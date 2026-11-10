@@ -2,7 +2,7 @@
 
 Hugo source for the public site and LaTeX source for its CV. The `bootc-setup` image serves the result.
 
-The `publish` workflow runs on each push to `main` and on manual dispatch. It builds `Containerfile`, which renders the Hugo site, precompresses it with gzip and Brotli, and compiles `cv/CV.tex` into `CV.pdf`. It then replaces the `static` branch with a single commit of the built tree and dispatches the [bootc-setup](https://github.com/varuniyer/bootc-setup) build, which copies that branch into the image. The dispatch reads the `GH_WORKFLOW_TOKEN` Actions secret, which `bootc-setup`'s `provision.sh` sets.
+The `publish` workflow runs on manual dispatch and on each push to `main` that changes more than `README.md` or `AGENTS.md`. It builds `Containerfile`, which renders the Hugo site, precompresses it with gzip and Brotli, and compiles `cv/CV.tex` into `CV.pdf`. It then replaces the `static` branch with a single commit of the built tree and dispatches the [bootc-setup](https://github.com/varuniyer/bootc-setup) build, which copies that branch into the image. The dispatch reads the `GH_WORKFLOW_TOKEN` Actions secret, which `bootc-setup`'s `provision.sh` sets.
 
 The repo must stay public, because the `bootc-setup` build downloads the `static` branch without authentication.
 
