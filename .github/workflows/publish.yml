@@ -1,0 +1,36 @@
+name: publish
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+concurrency:
+  group: publish
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build
+        run: podman build --layers=false -o public .
+
+      # Each run replaces the static branch with one orphan commit of the built tree.
+      - name: Push the static branch
+        run: |
+          git --work-tree=public checkout --orphan static
+          git --work-tree=public add -A
+          git -c user.name='github-actions[bot]' -c user.email='41898728+github-actions[bot]@users.noreply.github.com' commit -qm "Build $GITHUB_SHA"
+          git push --force origin static
+
+      # workflow_run only fires within one repository, so the bootc build is dispatched through the API.
+      - name: Dispatch the bootc build
+        run: gh workflow run build-and-publish.yml --repo varuniyer/bootc-setup --ref main
+        env:
+          GH_TOKEN: ${{ secrets.GH_WORKFLOW_TOKEN }}
