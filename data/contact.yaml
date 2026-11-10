@@ -1,0 +1,15 @@
+- label: Email
+  icon: email
+  email: varun@varuniyer.net
+
+- label: GitHub
+  icon: github
+  url: https://github.com/varuniyer
+
+- label: LinkedIn
+  icon: linkedin
+  url: https://linkedin.com/in/varuniyer1
+
+- label: Google Scholar
+  icon: google-scholar
+  url: https://scholar.google.com/citations?user=TbpEa3cAAAAJ

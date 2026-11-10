@@ -1,0 +1,2 @@
+{{- /* Fails the build when .row lacks one of .keys or holds an empty value for it. .source names the row in the error. */ -}}
+{{- range .keys }}{{ if not (index $.row .) }}{{ errorf "%s lacks %q" $.source . }}{{ end }}{{ end -}}

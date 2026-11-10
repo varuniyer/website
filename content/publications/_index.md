@@ -1,4 +1,4 @@
 ---
 title: "Publications"
-outputs: ["html", "rss", "latex"]
+outputs: ["html", "publications"]
 ---

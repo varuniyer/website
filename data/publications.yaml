@@ -7,4 +7,4 @@
 
 - anthology_id: "2022.findings-emnlp.111"
   selected: true
-  equal_contrib: [0, 1]
+  equal_contribution: [0, 1]

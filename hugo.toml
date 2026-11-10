@@ -1,24 +1,47 @@
 baseURL = "https://varuniyer.net/"
 locale = "en-US"
-title = "Varun Iyer"
-disableKinds = ["taxonomy", "term"]
+disableKinds = ["taxonomy", "term", "rss"]
 disablePathToLower = true
+
+[params]
+  author = "Varun Iyer"
 
 [mediaTypes."text/x-tex"]
   suffixes = ["tex"]
 
-[outputFormats.latex]
-  mediaType      = "text/x-tex"
-  baseName       = "publications"
-  isPlainText    = true
-  notAlternative = true
+[outputFormats.publications]
+  mediaType   = "text/x-tex"
+  baseName    = "publications"
+  isPlainText = true
 
-[[menus.main]]
-  name   = "Publications"
+[outputs]
+  home = ["html", "author", "contact", "education", "experience"]
+
+[outputFormats.author]
+  mediaType   = "text/x-tex"
+  baseName    = "author"
+  isPlainText = true
+
+[outputFormats.contact]
+  mediaType   = "text/x-tex"
+  baseName    = "contact"
+  isPlainText = true
+
+[outputFormats.education]
+  mediaType   = "text/x-tex"
+  baseName    = "education"
+  isPlainText = true
+
+[outputFormats.experience]
+  mediaType   = "text/x-tex"
+  baseName    = "experience"
+  isPlainText = true
+
+[[menus.nav]]
   pageRef = "/publications"
   weight = 1
 
-[[menus.main]]
+[[menus.nav]]
   name   = "CV"
   url    = "/CV.pdf"
   weight = 2

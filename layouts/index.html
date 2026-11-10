@@ -1,5 +1,38 @@
 {{ define "main" }}
-{{ partial "about.html" . }}
+<section class="about-section">
+  <div class="about-header">
+    <div class="about-info">
+      <h1 class="about-name">{{ site.Params.author }}</h1>
+      {{ $position := index hugo.Data.positions.education 0 }}
+      <h2 class="about-role">
+        {{ $position.degree }} student in
+        <a href="https://cs.uic.edu/">{{ $position.discipline }}</a>
+        at {{ $position.organization }}
+      </h2>
+
+      <div class="contact-links">
+        {{- range partial "contact-links.html" . }}
+        {{- if .email }}
+        {{/* assets/js/email.js sets href from data-email */}}
+        <a href="#" data-email="{{ .email | base64Encode }}" class="contact-link" aria-label="{{ .label }}" rel="nofollow">
+        {{- else }}
+        <a href="{{ .url }}" class="contact-link" aria-label="{{ .label }}" target="_blank" rel="noopener noreferrer">
+        {{- end }}
+          {{ partial (printf "icons/%s.svg" .icon) }}
+        </a>
+        {{- end }}
+      </div>
+    </div>
+
+    <div class="profile">
+      {{ with resources.Get "profile.webp" | fingerprint }}<img src="{{ .RelPermalink }}" alt="{{ site.Params.author }}" width="{{ .Width }}" height="{{ .Height }}">{{ end }}
+    </div>
+  </div>
+
+  <article class="prose">
+    {{ .Content }}
+  </article>
+</section>
 <section class="publications-section">
   <div class="publications-section-header">
     <h2 class="section-title">Selected Publications</h2>

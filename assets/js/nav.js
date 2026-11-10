@@ -1,7 +1,7 @@
 (function () {
-  var btn = document.querySelector('.menu-toggle');
-  btn.addEventListener('click', function () {
-    var open = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!open));
+  var toggle = document.querySelector('.mobile-nav-toggle');
+  toggle.addEventListener('click', function () {
+    var open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
   });
 })();

@@ -1,0 +1,1 @@
+{{- return (. | replaceRE `\\` "\x00" | replaceRE `([&%$#_{}])` `\$1` | replaceRE `~` `\textasciitilde{}` | replaceRE `\^` `\textasciicircum{}` | replaceRE "\x00" `\textbackslash{}`) }}

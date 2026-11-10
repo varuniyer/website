@@ -1,23 +1,33 @@
-{{- /* Merges each data/publications.yaml entry with its ACL Anthology MODS record, fetched at build time. */ -}}
+{{- /* Merges each data/publications.yaml entry with its ACL Anthology MODS document, fetched at build time.
+     Each author's separator is the Chicago-style text printed before the name. */ -}}
+{{- define "partials/inline/as-list.html" }}{{ return cond (reflect.IsMap .) (slice .) . }}{{ end }}
 {{- $records := slice }}
 {{- range hugo.Data.publications }}
+  {{- $entry := . }}
+  {{- if not (isset . "selected") }}{{ errorf "%s: selected is missing" .anthology_id }}{{ end }}
   {{- $mods := (resources.GetRemote (printf "https://aclanthology.org/%s.xml" .anthology_id) | transform.Unmarshal).mods }}
-  {{- $names := $mods.name }}
-  {{- if reflect.IsMap $names }}{{ $names = slice $names }}{{ end }}
+  {{- $names := partial "inline/as-list.html" $mods.name }}
+  {{- $last := sub (len $names) 1 }}
+  {{- range .equal_contribution }}{{ if or (lt . 0) (gt . $last) }}{{ errorf "%s: equal_contribution index %d outside 0..%d" $entry.anthology_id . $last }}{{ end }}{{ end }}
   {{- $authors := slice }}
-  {{- range $names }}
+  {{- range $i, $_ := $names }}
     {{- $parts := dict }}
-    {{- range .namePart }}{{ $parts = merge $parts (dict (index . "-type") (index . "#text")) }}{{ end }}
-    {{- $authors = $authors | append (printf "%s %s" $parts.given $parts.family) }}
+    {{- range partial "inline/as-list.html" .namePart }}{{ $parts = merge $parts (dict (index . "-type") (index . "#text")) }}{{ end }}
+    {{- if not $parts.family }}{{ errorf "%s: author %d has no family name" $entry.anthology_id $i }}{{ end }}
+    {{- $name := strings.TrimSpace (printf "%s %s" (or $parts.given "") $parts.family) }}
+    {{- $authors = $authors | append (dict
+      "separator" (cond (eq $i 0) "" (cond (lt $i $last) ", " (cond (eq $last 1) " and " ", and ")))
+      "name" $name
+      "owner" (eq $name site.Params.author)
+      "equal_contribution" (in $entry.equal_contribution $i)) }}
   {{- end }}
   {{- $records = $records | append (dict
     "title" $mods.titleInfo.title
     "url" $mods.location.url
     "authors" $authors
-    "booktitle" $mods.relatedItem.titleInfo.title
-    "issued" (time.AsTime (printf "%s-01" $mods.originInfo.dateIssued))
+    "venue" $mods.relatedItem.titleInfo.title
+    "year" (index (split $mods.originInfo.dateIssued "-") 0)
     "selected" .selected
-    "award" .award
-    "equal_contrib" .equal_contrib) }}
+    "award" .award) }}
 {{- end }}
 {{- return $records }}
