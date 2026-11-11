@@ -1,0 +1,1 @@
+(function(){document.querySelectorAll("a[data-email]").forEach(function(e){function t(){e.href="mailto:"+atob(e.dataset.email)}e.addEventListener("mouseenter",t),e.addEventListener("focusin",t),e.addEventListener("touchstart",t,{passive:!0}),e.addEventListener("click",t)})})()

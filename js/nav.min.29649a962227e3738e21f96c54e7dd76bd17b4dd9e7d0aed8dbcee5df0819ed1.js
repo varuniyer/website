@@ -1,0 +1,1 @@
+(function(){var e=document.querySelector(".mobile-nav-toggle");e.addEventListener("click",function(){e.setAttribute("aria-expanded",String(e.getAttribute("aria-expanded")!=="true"))})})()
