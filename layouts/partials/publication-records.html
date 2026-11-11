@@ -1,26 +1,27 @@
-{{- /* Merges each data/publications.yaml entry with its ACL Anthology MODS document, fetched at build time.
+{{- /* Merges each data/publications.yaml row with its ACL Anthology MODS document, fetched at build time.
      Each author's separator is the Chicago-style text printed before the name. */ -}}
 {{- define "partials/inline/as-list.html" }}{{ return cond (reflect.IsMap .) (slice .) . }}{{ end }}
 {{- $records := slice }}
 {{- range hugo.Data.publications }}
-  {{- $entry := . }}
-  {{- if not (isset . "selected") }}{{ errorf "%s: selected is missing" .anthology_id }}{{ end }}
+  {{- $row := . }}
+  {{- if ne (printf "%T" .selected) "bool" }}{{ errorf "%s: selected must be true or false" .anthology_id }}{{ end }}
   {{- $mods := (resources.GetRemote (printf "https://aclanthology.org/%s.xml" .anthology_id) | transform.Unmarshal).mods }}
   {{- $names := partial "inline/as-list.html" $mods.name }}
   {{- $last := sub (len $names) 1 }}
-  {{- range .equal_contribution }}{{ if or (lt . 0) (gt . $last) }}{{ errorf "%s: equal_contribution index %d outside 0..%d" $entry.anthology_id . $last }}{{ end }}{{ end }}
+  {{- range .equal_contributors }}{{ if or (lt . 0) (gt . $last) }}{{ errorf "%s: equal_contributors index %d outside 0..%d" $row.anthology_id . $last }}{{ end }}{{ end }}
   {{- $authors := slice }}
   {{- range $i, $_ := $names }}
     {{- $parts := dict }}
     {{- range partial "inline/as-list.html" .namePart }}{{ $parts = merge $parts (dict (index . "-type") (index . "#text")) }}{{ end }}
-    {{- if not $parts.family }}{{ errorf "%s: author %d has no family name" $entry.anthology_id $i }}{{ end }}
+    {{- if not $parts.family }}{{ errorf "%s: author %d has no family name" $row.anthology_id $i }}{{ end }}
     {{- $name := strings.TrimSpace (printf "%s %s" (or $parts.given "") $parts.family) }}
     {{- $authors = $authors | append (dict
       "separator" (cond (eq $i 0) "" (cond (lt $i $last) ", " (cond (eq $last 1) " and " ", and ")))
       "name" $name
-      "owner" (eq $name site.Params.author)
-      "equal_contribution" (in $entry.equal_contribution $i)) }}
+      "is_me" (eq $name site.Params.author)
+      "equal_contribution" (in $row.equal_contributors $i)) }}
   {{- end }}
+  {{- if not (where $authors "is_me" true) }}{{ errorf "%s: no author matches params.author" $row.anthology_id }}{{ end }}
   {{- $records = $records | append (dict
     "title" $mods.titleInfo.title
     "url" $mods.location.url

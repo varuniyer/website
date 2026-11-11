@@ -26,13 +26,7 @@
   \vspace{-4pt}\scshape\raggedright\large
 }{}{0em}{}[\titlerule \vspace{-5pt}]
 
-\newcommand{\resumeItem}[1]{
-  \item\small{
-    {#1 \vspace{-2pt}}
-  }
-}
-
-\newcommand{\resumeSubheading}[4]{
+\newcommand{\subheading}[4]{
   \vspace{-2pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
@@ -43,16 +37,15 @@
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
 \setlist[itemize,2]{beginpenalty=10000, midpenalty=10000}
 
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newenvironment{subheadinglist}{\begin{itemize}[leftmargin=0.15in, label={}]}{\end{itemize}}
+\newcommand{\phone}{408-781-1118}
+\newcommand{\contactSeparator}{$|$}
 
 \begin{document}
 
 \begin{center}
     \textbf{\Huge \scshape \input{author.tex}} \\ \vspace{1pt}
-    \small \link{tel:+14087811118}{408-781-1118} $|$ \input{contact.tex}
+    \small \link{tel:+1-\phone}{\phone} \contactSeparator{} \input{contact.tex}
 \end{center}
 
 \section{Education}
@@ -65,13 +58,13 @@
 \input{experience.tex}
 
 \section{Technical Skills}
- \resumeSubHeadingListStart
+ \begin{subheadinglist}
     \small{\item{
      \textbf{Languages}{: Python, Rust, C/C++, SQL} \\
      \textbf{Frameworks}{: PyTorch, Transformers, vLLM, Kubernetes} \\
      \textbf{Developer Tools}{: Git, Docker, GitLab CI/CD, tmux, VS Code, PyCharm, Helix} \\
      \textbf{Libraries}{: Pandas, NumPy, Matplotlib, PyO3}
     }}
- \resumeSubHeadingListEnd
+ \end{subheadinglist}
 
 \end{document}

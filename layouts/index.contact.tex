@@ -1,5 +1,5 @@
-{{- range $i, $_ := partial "contact-links.html" . }}
-{{- if $i }} $|$
+{{- range $i, $_ := partial "contact.html" . }}
+{{- if $i }} \contactSeparator{}
 {{ end }}
 {{- if .email }}\link{mailto:{{ partial "latex-escape-url.tex" .email }}}{ {{- partial "latex-escape.tex" .email -}} }
 {{- else }}\link{ {{- partial "latex-escape-url.tex" .url -}} }{ {{- partial "latex-escape.tex" .label -}} }

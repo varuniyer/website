@@ -3,6 +3,6 @@
 {{ end -}}
 \begin{enumerate}
 {{- range $records }}
-\item {{ range .authors }}{{ .separator }}{{ if .owner }}\textbf{ {{- partial "latex-escape.tex" .name -}} }{{ else }}{{ partial "latex-escape.tex" .name }}{{ end }}{{ if .equal_contribution }}$^*${{ end }}{{ end }}. {{ partial "latex-escape.tex" .title }}. In \emph{ {{- partial "latex-escape.tex" .venue -}} }, {{ .year }}.{{ with .award }} \mbox{(\textbf{ {{- partial "latex-escape.tex" . -}} })}{{ end }}
+\item {{ range .authors }}{{ .separator }}{{ $name := partial "latex-escape.tex" .name }}{{ if .is_me }}\textbf{ {{- $name -}} }{{ else }}{{ $name }}{{ end }}{{ if .equal_contribution }}$^*${{ end }}{{ end }}. {{ partial "latex-escape.tex" .title }}. In \emph{ {{- partial "latex-escape.tex" .venue -}} }, {{ .year }}.{{ with .award }} \mbox{(\textbf{ {{- partial "latex-escape.tex" . -}} })}{{ end }}
 {{- end }}
 \end{enumerate}

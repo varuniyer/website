@@ -1,15 +1,15 @@
-{{- partial "require-keys.html" (dict "row" hugo.Data.positions "keys" (slice "experience") "source" "data/positions.yaml") -}}
-\resumeSubHeadingListStart
-{{- range $i, $position := hugo.Data.positions.experience }}
-{{- partial "require-keys.html" (dict "row" $position "keys" (slice "role" "dates" "organization" "location" "bullets") "source" (printf "data/positions.yaml experience[%d]" $i)) }}
+{{- partial "require-keys.html" (dict "mapping" hugo.Data.positions "keys" (slice "experience") "source" "data/positions.yaml") -}}
+\begin{subheadinglist}
+{{- range $i, $_ := hugo.Data.positions.experience }}
+{{- partial "require-keys.html" (dict "mapping" . "keys" (slice "role" "dates" "organization" "location" "bullets") "source" (printf "data/positions.yaml experience[%d]" $i)) }}
 {{- if $i }}
 {{ end }}
-\resumeSubheading
+\subheading
 { {{- .role -}} }{ {{- .dates -}} }{ {{- .organization -}} }{ {{- .location -}} }
-\resumeItemListStart
+\begin{itemize}
 {{- range .bullets }}
-\resumeItem{ {{- . -}} }
+\item\small{ {{- . }} \vspace{-2pt}}
 {{- end }}
-\resumeItemListEnd
+\end{itemize}\vspace{-5pt}
 {{- end }}
-\resumeSubHeadingListEnd
+\end{subheadinglist}

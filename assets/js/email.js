@@ -4,5 +4,6 @@
     el.addEventListener('mouseenter', reveal);
     el.addEventListener('focusin', reveal);
     el.addEventListener('touchstart', reveal, { passive: true });
+    el.addEventListener('click', reveal);
   });
 })();

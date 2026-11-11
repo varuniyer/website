@@ -1,11 +1,11 @@
-{{- partial "require-keys.html" (dict "row" hugo.Data.positions "keys" (slice "education") "source" "data/positions.yaml") -}}
-\resumeSubHeadingListStart
-{{- range $i, $position := hugo.Data.positions.education }}
-{{- partial "require-keys.html" (dict "row" $position "keys" (slice "organization" "dates" "degree" "discipline") "source" (printf "data/positions.yaml education[%d]" $i)) }}
+{{- partial "require-keys.html" (dict "mapping" hugo.Data.positions "keys" (slice "education") "source" "data/positions.yaml") -}}
+\begin{subheadinglist}
+{{- range $i, $_ := hugo.Data.positions.education }}
+{{- partial "require-keys.html" (dict "mapping" . "keys" (slice "organization" "dates" "degree" "discipline") "source" (printf "data/positions.yaml education[%d]" $i)) }}
 {{- if $i }}
 {{ end }}
-\resumeSubheading
+\subheading
 { {{- .organization -}} }{ {{- .dates -}} }
 { {{- .degree }} in {{ .discipline -}} }{}
 {{- end }}
-\resumeSubHeadingListEnd
+\end{subheadinglist}

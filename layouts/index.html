@@ -4,20 +4,17 @@
     <div class="about-info">
       <h1 class="about-name">{{ site.Params.author }}</h1>
       {{ $position := index hugo.Data.positions.education 0 }}
-      <h2 class="about-role">
+      {{ range slice "organization" "degree" "discipline" }}{{ if findRE `[\\{}$&%#^_~]` (index $position .) }}{{ errorf "data/positions.yaml education[0] %s holds LaTeX markup" . }}{{ end }}{{ end }}
+      <h2 class="about-degree">
         {{ $position.degree }} student in
         <a href="https://cs.uic.edu/">{{ $position.discipline }}</a>
-        at {{ $position.organization }}
+        at the {{ $position.organization }}
       </h2>
 
       <div class="contact-links">
-        {{- range partial "contact-links.html" . }}
-        {{- if .email }}
+        {{- range partial "contact.html" . }}
         {{/* assets/js/email.js sets href from data-email */}}
-        <a href="#" data-email="{{ .email | base64Encode }}" class="contact-link" aria-label="{{ .label }}" rel="nofollow">
-        {{- else }}
-        <a href="{{ .url }}" class="contact-link" aria-label="{{ .label }}" target="_blank" rel="noopener noreferrer">
-        {{- end }}
+        <a {{ with .email }}href="#" data-email="{{ . | base64Encode }}" rel="nofollow"{{ else }}href="{{ .url }}" target="_blank" rel="noopener noreferrer"{{ end }} class="contact-link" aria-label="{{ .label }}">
           {{ partial (printf "icons/%s.svg" .icon) }}
         </a>
         {{- end }}
@@ -29,7 +26,7 @@
     </div>
   </div>
 
-  <article class="prose">
+  <article class="bio">
     {{ .Content }}
   </article>
 </section>

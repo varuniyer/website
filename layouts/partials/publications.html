@@ -1,4 +1,4 @@
-{{ if partial "has-equal-contribution.html" . }}<p class="publications-note">* equal contribution</p>{{ end }}
+{{ if partial "has-equal-contribution.html" . }}<p class="publications-legend">* equal contribution</p>{{ end }}
 <ol class="publications-list">
   {{ range . }}
   <li>
@@ -7,7 +7,7 @@
     </h2>
     <div class="publication-meta">
       {{ range .authors -}}
-        {{- .separator }}{{ if .owner }}<strong>{{ .name }}</strong>{{ else }}{{ .name }}{{ end }}{{ if .equal_contribution }}*{{ end -}}
+        {{- .separator }}{{ if .is_me }}<strong>{{ .name }}</strong>{{ else }}{{ .name }}{{ end }}{{ if .equal_contribution }}*{{ end -}}
       {{- end }}.
       <span class="publication-venue">{{ .venue }}</span>
       <span class="publication-year">{{ .year }}</span>

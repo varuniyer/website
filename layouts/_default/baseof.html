@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ if .IsHome }}{{ site.Params.author }}{{ else }}{{ .Title }} | {{ site.Params.author }}{{ end }}</title>
+  <title>{{ with .Title }}{{ . }} | {{ end }}{{ site.Params.author }}</title>
   <meta name="description" content="NLP researcher">
   {{ $style := resources.Get "css/style.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
@@ -13,7 +13,7 @@
   <header class="site-header">
     <div class="site-header-bar">
       <a href="/" class="nav-link nav-home">{{ site.Params.author }}</a>
-      <div class="nav-right">
+      <div class="nav-controls">
         <nav class="desktop-nav">
           {{ partial "nav-links.html" . }}
         </nav>

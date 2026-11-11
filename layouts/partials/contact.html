@@ -1,0 +1,8 @@
+{{- /* Returns data/contact.yaml's rows after the checks below. Each row's icon names a partial under icons/. */ -}}
+{{- if not hugo.Data.contact }}{{ errorf "data/contact.yaml holds no rows" }}{{ end }}
+{{- range $i, $link := hugo.Data.contact }}
+  {{- partial "require-keys.html" (dict "mapping" $link "keys" (slice "label" "icon") "source" (printf "data/contact.yaml[%d]" $i)) }}
+  {{- if eq (not $link.email) (not $link.url) }}{{ errorf "data/contact.yaml[%d] needs exactly one of email and url" $i }}{{ end }}
+  {{- if findRE `[\\{}^]` (or $link.url $link.email) }}{{ errorf "data/contact.yaml[%d] url or email holds \\, {, }, or ^, which must be percent-encoded" $i }}{{ end }}
+{{- end }}
+{{- return hugo.Data.contact }}

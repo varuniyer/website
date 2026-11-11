@@ -1,5 +1,5 @@
 # Every string is LaTeX source, which the CV templates insert unescaped.
-# The site's role line also prints education row 0's organization, degree, and discipline as HTML, so those three hold no LaTeX markup.
+# The site's degree line also prints education row 0's organization, degree, and discipline as HTML, so those three hold no LaTeX markup.
 education:
   - organization: University of Illinois Chicago
     dates: Aug 2022 -- Present
@@ -41,7 +41,7 @@ experience:
     bullets:
       - Worked with \textbf{Dr. Anoop Kumar} on unsupervised paraphrase-based data augmentation
       - Used Abstract Meaning Representations to generate syntactically diverse paraphrases
-      - Achieved the best BLEU among unsupervised paraphrase generators on ParaNMT, Quora, PAN, and MRPC
+      - Achieved the best BLEU among the tested unsupervised syntactically controlled paraphrase generators on ParaNMT, Quora, PAN, and MRPC
 
   - role: Research Assistant
     dates: May 2020 -- Dec 2021
@@ -74,5 +74,5 @@ experience:
     location: Marina del Rey, CA
     bullets:
       - Worked with \textbf{Professor Craig Knoblock} to build and link entities in a knowledge graph of space-related objects
-      - Implemented level-based access control for data across multiple Elasticsearch indices
+      - Implemented level-based access control for data across Elasticsearch indices
       - Extracted information on thousands of satellites and incorporated it into the Elasticsearch workflow
