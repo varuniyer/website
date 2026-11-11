@@ -16,7 +16,7 @@ RUN find public -type f \( -name '*.html' -o -name '*.xml' -o -name '*.css' -o -
 
 
 FROM quay.io/fedora/fedora:latest AS cv
-RUN dnf install -y texlive-luahbtex texlive-luaotfload texlive-latex texlive-fontspec texlive-geometry texlive-titlesec texlive-graphics texlive-enumitem texlive-hyperref texlive-bookmark texlive-ulem texlive-sourceserif texlive-amsfonts
+RUN dnf install -y --setopt=minrate=100k texlive-luahbtex texlive-luaotfload texlive-latex texlive-fontspec texlive-geometry texlive-titlesec texlive-graphics texlive-enumitem texlive-hyperref texlive-bookmark texlive-ulem texlive-sourceserif texlive-amsfonts
 WORKDIR /cv
 COPY cv/CV.tex .
 COPY --from=render /src/*.tex .
