@@ -1,16 +1,16 @@
 {{- /* Merges each data/publications.yaml row with its ACL Anthology MODS document, fetched at build time.
-     Each author's separator is the Chicago-style text printed before the name. */ -}}
+     Each author's separator is the Chicago join's text printed before the name. */ -}}
 {{- define "partials/inline/as-list.html" }}{{ return cond (reflect.IsMap .) (slice .) . }}{{ end }}
 {{- $records := slice }}
 {{- range hugo.Data.publications }}
   {{- $row := . }}
   {{- if ne (printf "%T" .selected) "bool" }}{{ errorf "%s: selected must be true or false" .anthology_id }}{{ end }}
   {{- $mods := (resources.GetRemote (printf "https://aclanthology.org/%s.xml" .anthology_id) | transform.Unmarshal).mods }}
-  {{- $names := partial "inline/as-list.html" $mods.name }}
-  {{- $last := sub (len $names) 1 }}
-  {{- range .equal_contributors }}{{ if or (lt . 0) (gt . $last) }}{{ errorf "%s: equal_contributors index %d outside 0..%d" $row.anthology_id . $last }}{{ end }}{{ end }}
+  {{- $modsNames := partial "inline/as-list.html" $mods.name }}
+  {{- $last := sub (len $modsNames) 1 }}
+  {{- range .equal_contributors }}{{ if or (lt . 0) (gt . $last) }}{{ errorf "%s: equal_contributors lists byline position %d, outside 0..%d" $row.anthology_id . $last }}{{ end }}{{ end }}
   {{- $authors := slice }}
-  {{- range $i, $_ := $names }}
+  {{- range $i, $_ := $modsNames }}
     {{- $parts := dict }}
     {{- range partial "inline/as-list.html" .namePart }}{{ $parts = merge $parts (dict (index . "-type") (index . "#text")) }}{{ end }}
     {{- if not $parts.family }}{{ errorf "%s: author %d has no family name" $row.anthology_id $i }}{{ end }}

@@ -30,6 +30,6 @@ jobs:
           git push --force origin site
 
       - name: Dispatch the bootc-setup build
-        run: gh workflow run build-and-publish.yml --repo varuniyer/bootc-setup --ref main
+        run: gh workflow run build-and-publish.yml --repo varuniyer/bootc-setup
         env:
           GH_TOKEN: ${{ secrets.GH_WORKFLOW_TOKEN }}

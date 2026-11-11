@@ -12,7 +12,7 @@ WORKDIR /work
 COPY --from=render /src/public ./public
 
 RUN find public -type f \( -name '*.html' -o -name '*.xml' -o -name '*.css' -o -name '*.js' \) \
-    -exec gzip --best --keep {} \; -exec brotli --best --keep {} \;
+    -exec gzip --best --keep {} \; -exec brotli {} \;
 
 
 FROM quay.io/fedora/fedora:latest AS cv

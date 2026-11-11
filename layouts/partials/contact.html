@@ -1,4 +1,4 @@
-{{- /* Returns data/contact.yaml's rows after the checks below. Each row's icon names a partial under icons/. */ -}}
+{{- /* Returns data/contact.yaml's rows. Each row's icon names a partial under icons/. */ -}}
 {{- if not hugo.Data.contact }}{{ errorf "data/contact.yaml holds no rows" }}{{ end }}
 {{- range $i, $link := hugo.Data.contact }}
   {{- partial "require-keys.html" (dict "mapping" $link "keys" (slice "label" "icon") "source" (printf "data/contact.yaml[%d]" $i)) }}

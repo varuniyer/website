@@ -1,9 +1,9 @@
 (function () {
-  document.querySelectorAll('a[data-email]').forEach(function (el) {
-    function reveal() { el.href = 'mailto:' + atob(el.dataset.email); }
-    el.addEventListener('mouseenter', reveal);
-    el.addEventListener('focusin', reveal);
-    el.addEventListener('touchstart', reveal, { passive: true });
-    el.addEventListener('click', reveal);
+  document.querySelectorAll('a[data-email]').forEach(function (link) {
+    function reveal() { link.href = 'mailto:' + atob(link.dataset.email); }
+    link.addEventListener('mouseenter', reveal);
+    link.addEventListener('focusin', reveal);
+    link.addEventListener('touchstart', reveal, { passive: true });
+    link.addEventListener('click', reveal);
   });
 })();

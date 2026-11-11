@@ -1,0 +1,11 @@
+{{- /* Renders data/positions.yaml's .section as an unlabeledlist of rows, each holding .keys and rendered by the .row partial.
+     Hugo parses this partial as HTML, so safeHTML keeps each row's TeX unescaped. */ -}}
+{{- partial "require-keys.html" (dict "mapping" hugo.Data.positions "keys" (slice .section) "source" "data/positions.yaml") -}}
+\begin{unlabeledlist}
+{{- range $i, $_ := index hugo.Data.positions $.section }}
+{{- partial "require-keys.html" (dict "mapping" . "keys" $.keys "source" (printf "data/positions.yaml %s[%d]" $.section $i)) }}
+{{- if $i }}
+{{ end }}
+{{ partial $.row . | safeHTML }}
+{{- end }}
+\end{unlabeledlist}

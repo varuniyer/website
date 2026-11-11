@@ -37,7 +37,7 @@
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
 \setlist[itemize,2]{beginpenalty=10000, midpenalty=10000}
 
-\newenvironment{subheadinglist}{\begin{itemize}[leftmargin=0.15in, label={}]}{\end{itemize}}
+\newenvironment{unlabeledlist}{\begin{itemize}[leftmargin=0.15in, label={}]}{\end{itemize}}
 \newcommand{\phone}{408-781-1118}
 \newcommand{\contactSeparator}{$|$}
 
@@ -58,13 +58,13 @@
 \input{experience.tex}
 
 \section{Technical Skills}
- \begin{subheadinglist}
+ \begin{unlabeledlist}
     \small{\item{
      \textbf{Languages}{: Python, Rust, C/C++, SQL} \\
      \textbf{Frameworks}{: PyTorch, Transformers, vLLM, Kubernetes} \\
      \textbf{Developer Tools}{: Git, Docker, GitLab CI/CD, tmux, VS Code, PyCharm, Helix} \\
      \textbf{Libraries}{: Pandas, NumPy, Matplotlib, PyO3}
     }}
- \end{subheadinglist}
+ \end{unlabeledlist}
 
 \end{document}

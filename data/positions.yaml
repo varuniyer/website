@@ -1,5 +1,5 @@
 # Every string is LaTeX source, which the CV templates insert unescaped.
-# The site's degree line also prints education row 0's organization, degree, and discipline as HTML, so those three hold no LaTeX markup.
+# The site's degree line also prints education row 0's organization, degree, and discipline as HTML, so those three hold no TeX special characters.
 education:
   - organization: University of Illinois Chicago
     dates: Aug 2022 -- Present
@@ -32,7 +32,7 @@ experience:
     location: Chicago, IL
     bullets:
       - Led lab sections for courses in discrete mathematics and C programming
-      - Helped students understand discrete mathematics, functional and systems programming, and NLP
+      - Helped students understand NLP, discrete mathematics, and functional and systems programming
 
   - role: Applied Scientist Intern
     dates: May 2021 -- Dec 2021
@@ -50,7 +50,7 @@ experience:
     bullets:
       - Worked with \textbf{Professor Benjamin Van Durme} on semantically grounded image classification
       - Augmented a ResNet architecture with geometric hierarchical embeddings for few-shot learning
-      - Extended a neural pipeline for entity typing to new datasets with distributed training
+      - Extended a neural entity-typing pipeline to new datasets and added distributed training
 
   - role: Undergraduate Researcher
     dates: Aug 2018 -- May 2020
@@ -65,7 +65,7 @@ experience:
     organization: University of Massachusetts Amherst
     location: Amherst, MA
     bullets:
-      - Graded homework submissions in Artificial Intelligence and Algorithms
+      - Graded homework in Algorithms and Artificial Intelligence
       - Helped students complete programming assignments written in Python and C
 
   - role: Undergraduate Research Intern

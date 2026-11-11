@@ -1,9 +1,5 @@
-{{- partial "require-keys.html" (dict "mapping" hugo.Data.positions "keys" (slice "experience") "source" "data/positions.yaml") -}}
-\begin{subheadinglist}
-{{- range $i, $_ := hugo.Data.positions.experience }}
-{{- partial "require-keys.html" (dict "mapping" . "keys" (slice "role" "dates" "organization" "location" "bullets") "source" (printf "data/positions.yaml experience[%d]" $i)) }}
-{{- if $i }}
-{{ end }}
+{{- partial "positions-section.tex" (dict "section" "experience" "keys" (slice "role" "dates" "organization" "location" "bullets") "row" "experience-row.tex") -}}
+{{- define "_partials/experience-row.tex" -}}
 \subheading
 { {{- .role -}} }{ {{- .dates -}} }{ {{- .organization -}} }{ {{- .location -}} }
 \begin{itemize}
@@ -11,5 +7,4 @@
 \item\small{ {{- . }} \vspace{-2pt}}
 {{- end }}
 \end{itemize}\vspace{-5pt}
-{{- end }}
-\end{subheadinglist}
+{{- end -}}

@@ -1,11 +1,6 @@
-{{- partial "require-keys.html" (dict "mapping" hugo.Data.positions "keys" (slice "education") "source" "data/positions.yaml") -}}
-\begin{subheadinglist}
-{{- range $i, $_ := hugo.Data.positions.education }}
-{{- partial "require-keys.html" (dict "mapping" . "keys" (slice "organization" "dates" "degree" "discipline") "source" (printf "data/positions.yaml education[%d]" $i)) }}
-{{- if $i }}
-{{ end }}
+{{- partial "positions-section.tex" (dict "section" "education" "keys" (slice "organization" "dates" "degree" "discipline") "row" "education-row.tex") -}}
+{{- define "_partials/education-row.tex" -}}
 \subheading
 { {{- .organization -}} }{ {{- .dates -}} }
 { {{- .degree }} in {{ .discipline -}} }{}
-{{- end }}
-\end{subheadinglist}
+{{- end -}}
