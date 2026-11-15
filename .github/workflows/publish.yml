@@ -12,6 +12,8 @@ concurrency:
 
 permissions:
   contents: write
+  id-token: write
+  attestations: write
 
 jobs:
   publish:
@@ -23,14 +25,22 @@ jobs:
       - name: Build
         run: podman build --layers=false -o built .
 
-      - name: Push the `site` branch
-        run: |
-          git --work-tree=built checkout --orphan site
-          git --work-tree=built add -A
-          git -c user.name='github-actions[bot]' -c user.email='41898728+github-actions[bot]@users.noreply.github.com' commit -qm "Build $GITHUB_SHA"
-          git push --force origin site
+      # bootc-gce-server's build accepts the site only when this workflow's attestation verifies.
+      - name: Pack the site
+        run: tar -czf site.tar.gz -C built .
 
-      - name: Dispatch the bootc-setup build
-        run: gh workflow run build-and-publish.yml --repo varuniyer/bootc-setup
+      - uses: actions/attest-build-provenance@v3
+        with:
+          subject-path: site.tar.gz
+
+      - name: Publish the tarball on the `site-tarball` release
+        run: |
+          gh release view site-tarball >/dev/null 2>&1 || gh release create site-tarball --title site-tarball --notes 'The built site and CV, attested by the publish workflow.'
+          gh release upload site-tarball site.tar.gz --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Dispatch the bootc-gce-server build
+        run: gh workflow run build-and-publish.yml --repo varuniyer/bootc-gce-server
         env:
           GH_TOKEN: ${{ secrets.GH_WORKFLOW_TOKEN }}

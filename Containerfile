@@ -23,7 +23,7 @@ COPY --from=render /src/*.tex .
 RUN lualatex -interaction=nonstopmode -halt-on-error CV.tex
 
 
-# The built tree, which bootc-setup's Caddy serves.
+# The built tree, which bootc-gce-server's Caddy serves.
 FROM scratch
 COPY --from=precompress /work/public /
 COPY --from=cv /cv/CV.pdf /CV.pdf

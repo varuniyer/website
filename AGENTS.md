@@ -16,8 +16,8 @@
 
 ## Publishing
 
-- The repo stays public, nothing may depend on the `site` branch's history, and `layouts/404.html` keeps its name. README.md says why.
-- Rotate `GH_WORKFLOW_TOKEN` only with bootc-setup's README snippet for the PAT. README.md says why.
+- The repo stays public, nothing may depend on an older `site.tar.gz`, and `layouts/404.html` keeps its name. README.md says why.
+- Rotate `GH_WORKFLOW_TOKEN` only with bootc-gce-server's README snippet for the PAT. README.md says why.
 
 ## Rulings
 
@@ -33,7 +33,7 @@ The author settled these on 2026-11-10 while applying an audit. Treat each as de
 - The CV compiles in one lualatex pass with `bookmark`.
 - `publish.yml` carries no comment on why it dispatches through the API.
 - `static/robots.txt` stays as an explicit allow-all policy.
-- The published branch is `site`, written in code quotes in prose, comments, and the name of the step that pushes it, where Actions shows the backticks literally.
+- The published artifact is `site.tar.gz` on the `site-tarball` release, written in code quotes in prose, comments, and the name of the step that publishes it, where Actions shows the backticks literally.
 - `.containerignore` lists only `.git` and `built`.
 - Publication records store `year` alone, because no reader uses the month.
 - The CV names the satellite system Elasticsearch throughout.
