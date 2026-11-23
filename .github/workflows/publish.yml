@@ -39,8 +39,3 @@ jobs:
           gh release upload site-tarball site.tar.gz --clobber
         env:
           GH_TOKEN: ${{ github.token }}
-
-      - name: Dispatch the bootc-gce-server build
-        run: gh workflow run build-and-publish.yml --repo varuniyer/bootc-gce-server
-        env:
-          GH_TOKEN: ${{ secrets.GH_WORKFLOW_TOKEN }}

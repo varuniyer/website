@@ -17,7 +17,6 @@
 ## Publishing
 
 - The repo stays public, nothing may depend on an older `site.tar.gz`, and `layouts/404.html` keeps its name. README.md says why.
-- Rotate `GH_WORKFLOW_TOKEN` only with bootc-gce-server's README snippet for the PAT. README.md says why.
 
 ## Rulings
 
@@ -31,7 +30,6 @@ The author settled these on 2026-11-10 while applying an audit. Treat each as de
 - Each equal-contribution legend appears only when a listed author carries the star, and both read "equal contribution" with no "denotes". The range error calls an `equal_contributors` entry a byline position.
 - `.nav-link`, `.mobile-nav-toggle`, and `.contact-link` share one hover background, one border radius, and one 0.15s fade, and `.bio a` shares that fade duration. `--color-hover-bg` stays a named palette token with one reference.
 - The CV compiles in one lualatex pass with `bookmark`.
-- `publish.yml` carries no comment on why it dispatches through the API.
 - `static/robots.txt` stays as an explicit allow-all policy.
 - The published artifact is `site.tar.gz` on the `site-tarball` release, written in code quotes in prose, comments, and the name of the step that publishes it, where Actions shows the backticks literally.
 - `.containerignore` lists only `.git` and `built`.
