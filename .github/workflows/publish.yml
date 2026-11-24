@@ -25,7 +25,7 @@ jobs:
       - name: Build
         run: podman build --layers=false -o built .
 
-      # bootc-gce-server's build accepts the site only when this workflow's attestation verifies.
+      # bootc-sealed-vm's build accepts the site only when this workflow's attestation verifies.
       - name: Pack the site
         run: tar -czf site.tar.gz -C built .
 
