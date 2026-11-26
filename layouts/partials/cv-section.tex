@@ -1,4 +1,4 @@
-{{- /* Renders data/<.section>.yaml as an unlabeledlist of rows, each holding .keys and rendered by the .row partial.
+{{- /* Renders data/<.section>.yaml as an unlabeledlist of rows, each holding .keys and rendered by the partial that .row_partial names.
      Hugo parses this partial as HTML, so safeHTML keeps each row's TeX unescaped. */ -}}
 {{- if not (index hugo.Data .section) }}{{ errorf "data/%s.yaml holds no rows" .section }}{{ end -}}
 \begin{unlabeledlist}
@@ -6,6 +6,6 @@
 {{- partial "require-keys.html" (dict "mapping" . "keys" $.keys "path" (printf "data/%s.yaml[%d]" $.section $i)) }}
 {{- if $i }}
 {{ end }}
-{{ partial $.row . | safeHTML }}
+{{ partial $.row_partial . | safeHTML }}
 {{- end }}
 \end{unlabeledlist}

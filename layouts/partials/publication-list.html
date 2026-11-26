@@ -5,9 +5,9 @@
     <h2 class="publication-title">
       <a href="{{ .url }}">{{ .title }}</a>
     </h2>
-    <div class="publication-meta">
+    <div class="publication-metadata">
       {{ range .authors -}}
-        {{- .separator }}{{ if .is_site_author }}<strong>{{ .name }}</strong>{{ else }}{{ .name }}{{ end }}{{ if .equal_contribution }}*{{ end -}}
+        {{- .separator }}{{ if .is_site_author }}<strong>{{ .name }}</strong>{{ else }}{{ .name }}{{ end }}{{ if .is_equal_contributor }}*{{ end -}}
       {{- end }}.
       <span class="publication-venue">{{ .venue }}</span>
       <span class="publication-year">{{ .year }}</span>

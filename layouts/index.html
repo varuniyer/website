@@ -1,7 +1,7 @@
 {{ define "main" }}
 <section class="about-section">
   <div class="about-header">
-    <div class="about-info">
+    <div class="about-name-and-contact">
       <h1 class="about-name">{{ site.Params.author }}</h1>
       {{ $latestEducation := index hugo.Data.education 0 }}
       {{ range slice "organization" "degree" "discipline" }}{{ $value := index $latestEducation . }}{{ if ne (partial "latex-escape.tex" $value) $value }}{{ errorf "data/education.yaml[0] %s holds a TeX special character" . }}{{ end }}{{ end }}
@@ -13,16 +13,16 @@
 
       <div class="contact-links">
         {{- range partial "contact.html" . }}
-        {{/* assets/js/email.js sets href from data-email */}}
-        <a {{ with .email }}href="#" data-email="{{ . | base64Encode }}" rel="nofollow"{{ else }}href="{{ .url }}" target="_blank" rel="noopener noreferrer"{{ end }} class="contact-link" aria-label="{{ .label }}">
+        {{/* assets/js/email.js sets href from data-email-base64 */}}
+        <a {{ with .email }}href="#" data-email-base64="{{ . | base64Encode }}" rel="nofollow"{{ else }}href="{{ .url }}" target="_blank" rel="noopener noreferrer"{{ end }} class="contact-link" aria-label="{{ .label }}">
           {{ partial (printf "icons/%s.svg" .icon) }}
         </a>
         {{- end }}
       </div>
     </div>
 
-    <div class="profile">
-      {{ with resources.Get "profile.webp" | fingerprint }}<img src="{{ .RelPermalink }}" alt="{{ site.Params.author }}" width="{{ .Width }}" height="{{ .Height }}">{{ end }}
+    <div class="profile-photo">
+      {{ with resources.Get "profile-photo.webp" | fingerprint }}<img src="{{ .RelPermalink }}" alt="{{ site.Params.author }}" width="{{ .Width }}" height="{{ .Height }}">{{ end }}
     </div>
   </div>
 
@@ -35,6 +35,6 @@
     <h2 class="section-title">Selected Publications</h2>
     <a href="{{ (site.GetPage "/publications").RelPermalink }}" class="view-all">View all</a>
   </div>
-  {{ partial "publications.html" (where (partial "publication-records.html" .) "selected" true) }}
+  {{ partial "publication-list.html" (where (partial "publication-records.html" .) "selected" true) }}
 </section>
 {{ end }}

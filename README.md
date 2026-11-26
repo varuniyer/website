@@ -6,7 +6,7 @@ The primary copy is the CodeCommit repository that the [bootc-sealed-vm](https:/
 
 `Containerfile` pins each base image by tag and digest, because the bootc-sealed-vm build checks no signature on them. The digest makes each build use the images a commit names, so updating an image takes a commit that changes its tag and digest.
 
-## Layout
+## Files
 
 - `hugo.toml`, `assets/`, `content/`, `data/`, `layouts/`, `static/`: Hugo source, including the `404.html` page Caddy serves for unknown paths. `data/publications.yaml` lists publications by ACL Anthology ID, and each build fetches their MODS documents from the Anthology.
 - `cv/CV.tex`: LaTeX source of `CV.pdf`, compiled with the author name, contact links, education, experience, and publication list that the Hugo build generates.

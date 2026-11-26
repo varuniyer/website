@@ -24,11 +24,11 @@ The author settled these on 2026-11-10 while applying an audit. Treat each as de
 
 - README.md states the publishing facts and their reasons and states no prohibition. AGENTS.md keeps only the prohibitions.
 - `params.author` in `hugo.toml` holds the author's name, and every template reads it there. The site has no `title` key, and the `rss` kind stays disabled though no page emits RSS today. `baseURL`, `sitemap.xml`, and the Containerfile's `*.xml` pattern stay, because search engines read the sitemap.
-- `data/contact.yaml`, `data/education.yaml`, and `data/experience.yaml` are the one source for the contact links, education, and experience that the site and the CV both state. The bio, the CV items, and the phone number stay hand-written, and only the CV shows the phone.
+- `data/contact.yaml`, `data/education.yaml`, and `data/experience.yaml` are the one source for the contact links, education, and experience that the site and the CV both state. The bio, the CV items, and the phone number stay hand-written, and only the CV shows the phone number.
 - Every `data/publications.yaml` row states `selected` explicitly, since the homepage shows the selected subset.
 - Both author lists follow the Chicago join (`A and B`, `A, B, and C`), and the equal-contribution asterisk is placed outside the author's bolded name.
 - Each equal-contribution legend appears only when a listed author has the asterisk, and both read "equal contribution" with no "denotes". The range error calls an `equal_contributors` entry an author position.
-- `.nav-link`, `.mobile-nav-toggle`, and `.contact-link` share one hover background, one border radius, and one 0.15s background transition, and `.bio a` shares that transition's duration. `--color-hover-background` stays a named custom property with one reference.
+- `.nav-link`, `.narrow-nav-toggle`, and `.contact-link` share one hover background, one border radius, and one 0.15s background transition, and `.bio a` shares that transition's duration. `--color-hover-background` stays a named custom property with one reference.
 - The CV compiles in one lualatex pass with `bookmark`.
 - `static/robots.txt` stays as an explicit allow-all policy.
 - `.containerignore` lists only `.git` and `site`.
@@ -53,6 +53,6 @@ The author settled these on 2026-11-10 while applying an audit. Treat each as de
 - The bio names institutions and degrees as `data/education.yaml` does.
 - `layouts/index.html` calls education row 0 `$latestEducation`, and `publication-records.html` calls the MODS name elements `$modsNames`.
 - `cv-section.tex` renders what the education and experience fragments share: the check that the data file has rows, each row's key check, and the `unlabeledlist` environment around the rows. Hugo parses it as HTML, so it passes each row through `safeHTML`, and it keeps the `.tex` extension.
-- `.about-info`'s `-10px` offset applies only from 768px, where the name is beside the photo.
+- `.about-name-and-contact`'s `-10px` offset applies only from 768px, where the name is beside the photo.
 - `.bio` has no layout rule for a second paragraph.
 - An `@supports not` block gives `.bio a` a precomputed `#54769f` underline for Safari before 16.2, since a plain fallback declaration is overridden by the later `color-mix()` declaration that holds `var()`.
