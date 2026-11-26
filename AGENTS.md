@@ -26,24 +26,24 @@ The author settled these on 2026-11-10 while applying an audit. Treat each as de
 - `params.author` in `hugo.toml` holds the author's name, and every template reads it there. The site has no `title` key, and the `rss` kind stays disabled though no page emits RSS today. `baseURL`, `sitemap.xml`, and the Containerfile's `*.xml` term stay, because search engines read the sitemap.
 - `data/contact.yaml`, `data/education.yaml`, and `data/experience.yaml` are the one source for the contact links, education, and experience that the site and the CV both state. The bio, the CV items, and the phone number stay hand-written, and only the CV shows the phone.
 - Every `data/publications.yaml` row states `selected` explicitly, since the homepage shows the selected subset.
-- Both author lists follow the Chicago join (`A and B`, `A, B, and C`), and the equal-contribution star sits outside the author's bolded name.
-- Each equal-contribution legend appears only when a listed author carries the star, and both read "equal contribution" with no "denotes". The range error calls an `equal_contributors` entry a byline position.
-- `.nav-link`, `.mobile-nav-toggle`, and `.contact-link` share one hover background, one border radius, and one 0.15s fade, and `.bio a` shares that fade duration. `--color-hover-background` stays a named palette token with one reference.
+- Both author lists follow the Chicago join (`A and B`, `A, B, and C`), and the equal-contribution asterisk sits outside the author's bolded name.
+- Each equal-contribution legend appears only when a listed author carries the asterisk, and both read "equal contribution" with no "denotes". The range error calls an `equal_contributors` entry an author position.
+- `.nav-link`, `.mobile-nav-toggle`, and `.contact-link` share one hover background, one border radius, and one 0.15s background transition, and `.bio a` shares that transition's duration. `--color-hover-background` stays a named custom property with one reference.
 - The CV compiles in one lualatex pass with `bookmark`.
 - `static/robots.txt` stays as an explicit allow-all policy.
 - `.containerignore` lists only `.git` and `site`.
 - Publication records store `year` alone, because no reader uses the month.
 - The CV names the satellite system Elasticsearch throughout.
 - The profile photo scrolls with the page.
-- The breakpoint queries use `not all and (min-width: 768px)` and `(min-width: 768px)`, because range syntax needs Safari 16.4 while the stylesheet's `:has()` works from Safari 15.4.
+- The media queries use `not all and (min-width: 768px)` and `(min-width: 768px)`, because range syntax needs Safari 16.4 while the stylesheet's `:has()` works from Safari 15.4.
 - The degree line links "Computer Science" to `https://cs.uic.edu/`, with the URL in the template, and it may wrap to two lines.
 - Output formats and CV fragments are named for what they hold (`publications`, `author`, `contact`, `education`, `experience`), and the site's contact links use the `contact-*` classes.
 - The build fails on an Anthology author with no family name, on a publication whose authors include no match for `params.author`, on a `selected` value other than `true` or `false`, on a contact URL or email holding `\`, `{`, `}`, or `^`, and on a TeX special character in education row 0's organization, degree, or discipline.
 - The BLooP item claims ROUGE and BARTScore gains on CNN/DM, CCSum, Multi-News, and SciTLDR scientific abstracts, because the paper reports ROUGE gains on SciTLDR only for abstract input.
 - The AMRPG item claims the best BLEU among the tested unsupervised syntactically controlled paraphrase generators, because the paper's Table 1 compares AMRPG against three such models.
 - The per-author flag marking the site's author is `is_site_author`, and prose calls that person the author.
-- `equal_contributors` lists 0-based byline positions, and `data/publications.yaml` carries no comment saying so.
-- The homepage headline is the degree line (`.about-degree`), since `role` names an experience title. It and the bio both say "the University of Illinois Chicago".
+- `equal_contributors` lists 0-based author positions, and `data/publications.yaml` carries no comment saying so.
+- The line under the homepage's name is the degree line (`.about-degree`), since `role` names an experience title. It and the bio both say "the University of Illinois Chicago".
 - The contact partial is `contact.html`, named for `data/contact.yaml`.
 - The CV writes each education and experience entry with `\subheading` inside an `unlabeledlist` environment defined by `\newenvironment`, named for its unlabeled items since Technical Skills also uses it, because enumitem's `\newlist` gives the list its own depth and drops the nested bullets' `\labelitemii` and `\setlist[itemize,2]` styling.
 - README.md says the build precompresses the site's frontend code and leaves the file types to the Containerfile's `find` pattern.

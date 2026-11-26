@@ -8,7 +8,7 @@
   {{- $mods := (resources.GetRemote (printf "https://aclanthology.org/%s.xml" .anthology_id) | transform.Unmarshal).mods }}
   {{- $modsNames := partial "inline/as-list.html" $mods.name }}
   {{- $last := sub (len $modsNames) 1 }}
-  {{- range .equal_contributors }}{{ if or (lt . 0) (gt . $last) }}{{ errorf "%s: equal_contributors lists byline position %d, outside 0..%d" $row.anthology_id . $last }}{{ end }}{{ end }}
+  {{- range .equal_contributors }}{{ if or (lt . 0) (gt . $last) }}{{ errorf "%s: equal_contributors lists author position %d, outside 0..%d" $row.anthology_id . $last }}{{ end }}{{ end }}
   {{- $authors := slice }}
   {{- range $i, $_ := $modsNames }}
     {{- $parts := dict }}
