@@ -6,7 +6,7 @@
 
 ## Git
 
-- Run `git log -1` before any `git commit --amend`. The user makes commits between turns, so HEAD may not be the commit you expect.
+- Run `git log -1` before any `git commit --amend`. The author makes commits between turns, so HEAD may not be the commit you expect.
 - Remove tracked files with `git rm`, not plain `rm`.
 - When one "commit" instruction covers several changes from the conversation, write one combined commit instead of per-subsystem splits.
 
@@ -24,11 +24,11 @@ The author settled these on 2026-11-10 while applying an audit. Treat each as de
 
 - README.md owns the publishing facts and their reasons and states no prohibition. AGENTS.md keeps only the prohibitions.
 - `params.author` in `hugo.toml` holds the author's name, and every template reads it there. The site has no `title` key, and the `rss` kind stays disabled though no page emits RSS today. `baseURL`, `sitemap.xml`, and the Containerfile's `*.xml` term stay, because search engines read the sitemap.
-- `data/contact.yaml` and `data/positions.yaml` are the one source for the contact links and positions that the site and the CV both state. The bio, the CV items, and the phone number stay hand-written, and only the CV shows the phone.
+- `data/contact.yaml`, `data/education.yaml`, and `data/experience.yaml` are the one source for the contact links, education, and experience that the site and the CV both state. The bio, the CV items, and the phone number stay hand-written, and only the CV shows the phone.
 - Every `data/publications.yaml` row states `selected` explicitly, since the homepage shows the selected subset.
 - Both author lists follow the Chicago join (`A and B`, `A, B, and C`), and the equal-contribution star sits outside the author's bolded name.
 - Each equal-contribution legend appears only when a listed author carries the star, and both read "equal contribution" with no "denotes". The range error calls an `equal_contributors` entry a byline position.
-- `.nav-link`, `.mobile-nav-toggle`, and `.contact-link` share one hover background, one border radius, and one 0.15s fade, and `.bio a` shares that fade duration. `--color-hover-bg` stays a named palette token with one reference.
+- `.nav-link`, `.mobile-nav-toggle`, and `.contact-link` share one hover background, one border radius, and one 0.15s fade, and `.bio a` shares that fade duration. `--color-hover-background` stays a named palette token with one reference.
 - The CV compiles in one lualatex pass with `bookmark`.
 - `static/robots.txt` stays as an explicit allow-all policy.
 - `.containerignore` lists only `.git` and `site`.
@@ -41,18 +41,18 @@ The author settled these on 2026-11-10 while applying an audit. Treat each as de
 - The build fails on an Anthology author with no family name, on a publication whose authors include no match for `params.author`, on a `selected` value other than `true` or `false`, on a contact URL or email holding `\`, `{`, `}`, or `^`, and on a TeX special character in education row 0's organization, degree, or discipline.
 - The BLooP item claims ROUGE and BARTScore gains on CNN/DM, CCSum, Multi-News, and SciTLDR scientific abstracts, because the paper reports ROUGE gains on SciTLDR only for abstract input.
 - The AMRPG item claims the best BLEU among the tested unsupervised syntactically controlled paraphrase generators, because the paper's Table 1 compares AMRPG against three such models.
-- The per-author flag marking the site's author is `is_me`, and prose calls that person the author.
+- The per-author flag marking the site's author is `is_site_author`, and prose calls that person the author.
 - `equal_contributors` lists 0-based byline positions, and `data/publications.yaml` carries no comment saying so.
 - The homepage headline is the degree line (`.about-degree`), since `role` names an experience title. It and the bio both say "the University of Illinois Chicago".
 - The contact partial is `contact.html`, named for `data/contact.yaml`.
-- The CV writes each position with `\subheading` inside an `unlabeledlist` environment defined by `\newenvironment`, named for its unlabeled items since Technical Skills also uses it, because enumitem's `\newlist` gives the list its own depth and drops the nested bullets' `\labelitemii` and `\setlist[itemize,2]` styling.
+- The CV writes each education and experience entry with `\subheading` inside an `unlabeledlist` environment defined by `\newenvironment`, named for its unlabeled items since Technical Skills also uses it, because enumitem's `\newlist` gives the list its own depth and drops the nested bullets' `\labelitemii` and `\setlist[itemize,2]` styling.
 - README.md says the build precompresses the site's frontend code and leaves the file types to the Containerfile's `find` pattern.
 - The stylesheet writes each square box as `width` plus `aspect-ratio: 1`. `--side-padding` and `--nav-link-side-padding` state that `.nav-home`'s text aligns with the main content's edge.
-- `data/positions.yaml:2` names the three fields the degree line prints, as a warning where the row's writer types. `latex-escape-url.tex` names none of the characters `contact.html` rejects.
+- `data/education.yaml:2` names the three fields the degree line prints, as a warning where the row's writer types. `latex-escape-url.tex` names none of the characters `contact.html` rejects.
 - The entity-typing item says the author added distributed training.
-- The bio names institutions and degrees as `data/positions.yaml` does.
-- `layouts/index.html` calls education row 0 `$education`, and `publication-records.html` calls the MODS name elements `$modsNames`.
-- `positions-section.tex` renders what the education and experience fragments share: the section's key check, each row's key check, and the `unlabeledlist` environment around the rows. Hugo parses it as HTML, so it passes each row through `safeHTML`, and it keeps the `.tex` extension.
+- The bio names institutions and degrees as `data/education.yaml` does.
+- `layouts/index.html` calls education row 0 `$latestEducation`, and `publication-records.html` calls the MODS name elements `$modsNames`.
+- `cv-section.tex` renders what the education and experience fragments share: the check that the data file has rows, each row's key check, and the `unlabeledlist` environment around the rows. Hugo parses it as HTML, so it passes each row through `safeHTML`, and it keeps the `.tex` extension.
 - `.about-info`'s `-10px` offset applies only from 768px, where the name sits beside the photo.
 - `.bio` has no layout rule for a second paragraph.
 - An `@supports not` block gives `.bio a` a precomputed `#54769f` underline for Safari before 16.2, since a plain fallback line loses to the later `color-mix()` declaration that holds `var()`.

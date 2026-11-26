@@ -1,0 +1,16 @@
+# Every string is LaTeX source, which the CV templates insert unescaped.
+# The site's degree line also prints row 0's organization, degree, and discipline as HTML, so those three hold no TeX special characters.
+- organization: University of Illinois Chicago
+  dates: Aug 2022 -- Present
+  degree: PhD
+  discipline: Computer Science
+
+- organization: Johns Hopkins University
+  dates: Aug 2020 -- May 2022
+  degree: MSE
+  discipline: Computer Science
+
+- organization: University of Massachusetts Amherst
+  dates: Aug 2017 -- May 2020
+  degree: BS
+  discipline: Computer Science

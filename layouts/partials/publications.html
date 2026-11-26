@@ -7,7 +7,7 @@
     </h2>
     <div class="publication-meta">
       {{ range .authors -}}
-        {{- .separator }}{{ if .is_me }}<strong>{{ .name }}</strong>{{ else }}{{ .name }}{{ end }}{{ if .equal_contribution }}*{{ end -}}
+        {{- .separator }}{{ if .is_site_author }}<strong>{{ .name }}</strong>{{ else }}{{ .name }}{{ end }}{{ if .equal_contribution }}*{{ end -}}
       {{- end }}.
       <span class="publication-venue">{{ .venue }}</span>
       <span class="publication-year">{{ .year }}</span>

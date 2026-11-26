@@ -9,6 +9,6 @@ The primary copy lives in the CodeCommit repository that the [bootc-sealed-vm](h
 ## Layout
 
 - `hugo.toml`, `assets/`, `content/`, `data/`, `layouts/`, `static/`: Hugo source, including the `404.html` page Caddy serves for unknown paths. `data/publications.yaml` lists publications by ACL Anthology ID, and each build fetches their MODS documents from the Anthology.
-- `cv/CV.tex`: LaTeX source of `CV.pdf`, compiled with the author name, contact links, positions, and publication list that the Hugo build generates.
+- `cv/CV.tex`: LaTeX source of `CV.pdf`, compiled with the author name, contact links, education, experience, and publication list that the Hugo build generates.
 
 To build locally, run `rm -rf site && podman build -o site .` and inspect `site/`.

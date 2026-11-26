@@ -1,4 +1,4 @@
-{{- partial "positions-section.tex" (dict "section" "experience" "keys" (slice "role" "dates" "organization" "location" "items") "row" "experience-row.tex") -}}
+{{- partial "cv-section.tex" (dict "section" "experience" "keys" (slice "role" "dates" "organization" "location" "items") "row" "experience-row.tex") -}}
 {{- define "_partials/experience-row.tex" -}}
 \subheading
 { {{- .role -}} }{ {{- .dates -}} }{ {{- .organization -}} }{ {{- .location -}} }

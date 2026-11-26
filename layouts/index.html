@@ -3,12 +3,12 @@
   <div class="about-header">
     <div class="about-info">
       <h1 class="about-name">{{ site.Params.author }}</h1>
-      {{ $education := index hugo.Data.positions.education 0 }}
-      {{ range slice "organization" "degree" "discipline" }}{{ $value := index $education . }}{{ if ne (partial "latex-escape.tex" $value) $value }}{{ errorf "data/positions.yaml education[0] %s holds a TeX special character" . }}{{ end }}{{ end }}
+      {{ $latestEducation := index hugo.Data.education 0 }}
+      {{ range slice "organization" "degree" "discipline" }}{{ $value := index $latestEducation . }}{{ if ne (partial "latex-escape.tex" $value) $value }}{{ errorf "data/education.yaml[0] %s holds a TeX special character" . }}{{ end }}{{ end }}
       <h2 class="about-degree">
-        {{ $education.degree }} student in
-        <a href="https://cs.uic.edu/">{{ $education.discipline }}</a>
-        at the {{ $education.organization }}
+        {{ $latestEducation.degree }} student in
+        <a href="https://cs.uic.edu/">{{ $latestEducation.discipline }}</a>
+        at the {{ $latestEducation.organization }}
       </h2>
 
       <div class="contact-links">

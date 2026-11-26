@@ -18,10 +18,10 @@
     {{- $authors = $authors | append (dict
       "separator" (cond (eq $i 0) "" (cond (lt $i $last) ", " (cond (eq $last 1) " and " ", and ")))
       "name" $name
-      "is_me" (eq $name site.Params.author)
+      "is_site_author" (eq $name site.Params.author)
       "equal_contribution" (in $row.equal_contributors $i)) }}
   {{- end }}
-  {{- if not (where $authors "is_me" true) }}{{ errorf "%s: no author matches params.author" $row.anthology_id }}{{ end }}
+  {{- if not (where $authors "is_site_author" true) }}{{ errorf "%s: no author matches params.author" $row.anthology_id }}{{ end }}
   {{- $records = $records | append (dict
     "title" $mods.titleInfo.title
     "url" $mods.location.url

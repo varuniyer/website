@@ -1,0 +1,60 @@
+# Every string is LaTeX source, which the CV templates insert unescaped.
+- role: Research Assistant
+  dates: Aug 2022 -- Present
+  organization: University of Illinois Chicago
+  location: Chicago, IL
+  items:
+    - Working with \textbf{Professor Cornelia Caragea} on zero-shot abstractive document summarization
+    - Developing approaches to improve factuality in summarization
+    - Improved zero-shot ROUGE and BARTScore on CNN/DM, CCSum, Multi-News, and SciTLDR scientific abstracts
+
+- role: Teaching Assistant
+  dates: Jan 2023 -- Present
+  organization: University of Illinois Chicago
+  location: Chicago, IL
+  items:
+    - Led lab sections for courses in discrete mathematics and C programming
+    - Helped students understand NLP, discrete mathematics, and functional and systems programming
+
+- role: Applied Scientist Intern
+  dates: May 2021 -- Dec 2021
+  organization: Amazon Alexa AI
+  location: Remote
+  items:
+    - Worked with \textbf{Dr. Anoop Kumar} on unsupervised paraphrase-based data augmentation
+    - Used Abstract Meaning Representations to generate syntactically diverse paraphrases
+    - Achieved the best BLEU among the tested unsupervised syntactically controlled paraphrase generators on ParaNMT, Quora, PAN, and MRPC
+
+- role: Research Assistant
+  dates: May 2020 -- Dec 2021
+  organization: Johns Hopkins University
+  location: Remote
+  items:
+    - Worked with \textbf{Professor Benjamin Van Durme} on semantically grounded image classification
+    - Augmented a ResNet architecture with geometric hierarchical embeddings for few-shot learning
+    - Extended a neural entity-typing pipeline to new datasets and added distributed training
+
+- role: Undergraduate Researcher
+  dates: Aug 2018 -- May 2020
+  organization: University of Massachusetts Amherst
+  location: Amherst, MA
+  items:
+    - Worked with \textbf{Professor Andrew McCallum} on fine-grained entity typing using PyTorch
+    - Developed a stacked BiLSTM with embedding-based loss functions and hierarchical type constraints
+
+- role: Undergraduate Course Assistant
+  dates: Sep 2018 -- May 2020
+  organization: University of Massachusetts Amherst
+  location: Amherst, MA
+  items:
+    - Graded homework in Algorithms and Artificial Intelligence
+    - Helped students complete programming assignments written in Python and C
+
+- role: Undergraduate Research Intern
+  dates: May 2018 -- Aug 2018
+  organization: USC Information Sciences Institute
+  location: Marina del Rey, CA
+  items:
+    - Worked with \textbf{Professor Craig Knoblock} to build and link entities in a knowledge graph of space-related objects
+    - Implemented level-based access control for data across Elasticsearch indices
+    - Extracted information on thousands of satellites and incorporated it into the Elasticsearch workflow
