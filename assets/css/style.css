@@ -1,7 +1,7 @@
 :root {
   --content-width: 40rem;
-  --gutter: 2rem;
-  --nav-link-inset: 1rem;
+  --side-padding: 2rem;
+  --nav-link-side-padding: 1rem;
   --color-text: #171717;
   --color-text-muted: #525252;
   --color-link: #003270;
@@ -37,11 +37,11 @@ a { color: var(--color-link); }
   align-items: center;
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: 1rem calc(var(--gutter) - var(--nav-link-inset));
+  padding: 1rem calc(var(--side-padding) - var(--nav-link-side-padding));
 }
 
 .nav-link {
-  padding: 0.5rem var(--nav-link-inset);
+  padding: 0.5rem var(--nav-link-side-padding);
   white-space: nowrap;
 }
 
@@ -84,7 +84,7 @@ a { color: var(--color-link); }
 .main-content {
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: 8rem var(--gutter) 5rem;
+  padding: 8rem var(--side-padding) 5rem;
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
