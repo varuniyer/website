@@ -8,7 +8,7 @@
 
 - Run `git log -1` before any `git commit --amend`. The author makes commits between turns, so HEAD may not be the commit you expect.
 - Remove tracked files with `git rm`, not plain `rm`.
-- When one "commit" instruction covers several changes from the conversation, write one combined commit instead of per-subsystem splits.
+- When one "commit" instruction covers several changes from the conversation, write one combined commit instead of one commit per change.
 
 ## Build
 
@@ -23,7 +23,7 @@
 The author settled these on 2026-11-10 while applying an audit. Treat each as decided, and raise one again only when the code it describes changes.
 
 - README.md states the publishing facts and their reasons and states no prohibition. AGENTS.md keeps only the prohibitions.
-- `params.author` in `hugo.toml` holds the author's name, and every template reads it there. The site has no `title` key, and the `rss` kind stays disabled though no page emits RSS today. `baseURL`, `sitemap.xml`, and the Containerfile's `*.xml` term stay, because search engines read the sitemap.
+- `params.author` in `hugo.toml` holds the author's name, and every template reads it there. The site has no `title` key, and the `rss` kind stays disabled though no page emits RSS today. `baseURL`, `sitemap.xml`, and the Containerfile's `*.xml` pattern stay, because search engines read the sitemap.
 - `data/contact.yaml`, `data/education.yaml`, and `data/experience.yaml` are the one source for the contact links, education, and experience that the site and the CV both state. The bio, the CV items, and the phone number stay hand-written, and only the CV shows the phone.
 - Every `data/publications.yaml` row states `selected` explicitly, since the homepage shows the selected subset.
 - Both author lists follow the Chicago join (`A and B`, `A, B, and C`), and the equal-contribution asterisk is placed outside the author's bolded name.
@@ -48,11 +48,11 @@ The author settled these on 2026-11-10 while applying an audit. Treat each as de
 - The CV writes each education and experience entry with `\subheading` inside an `unlabeledlist` environment defined by `\newenvironment`, named for its unlabeled items since Technical Skills also uses it, because enumitem's `\newlist` gives the list its own depth and drops the nested bullets' `\labelitemii` and `\setlist[itemize,2]` styling.
 - README.md says the build precompresses the site's frontend code and leaves the file types to the Containerfile's `find` pattern.
 - The stylesheet writes each square box as `width` plus `aspect-ratio: 1`. `--side-padding` and `--nav-link-side-padding` state that `.nav-home`'s text aligns with the main content's edge.
-- `data/education.yaml:2` names the three fields the degree line prints, as a warning where the row's writer types. `latex-escape-url.tex` names none of the characters `contact.html` rejects.
+- `data/education.yaml:2` names the three fields the degree line prints, as a warning where the author edits the row. `latex-escape-url.tex` names none of the characters `contact.html` rejects.
 - The entity-typing item says the author added distributed training.
 - The bio names institutions and degrees as `data/education.yaml` does.
 - `layouts/index.html` calls education row 0 `$latestEducation`, and `publication-records.html` calls the MODS name elements `$modsNames`.
 - `cv-section.tex` renders what the education and experience fragments share: the check that the data file has rows, each row's key check, and the `unlabeledlist` environment around the rows. Hugo parses it as HTML, so it passes each row through `safeHTML`, and it keeps the `.tex` extension.
 - `.about-info`'s `-10px` offset applies only from 768px, where the name is beside the photo.
 - `.bio` has no layout rule for a second paragraph.
-- An `@supports not` block gives `.bio a` a precomputed `#54769f` underline for Safari before 16.2, since a plain fallback line is overridden by the later `color-mix()` declaration that holds `var()`.
+- An `@supports not` block gives `.bio a` a precomputed `#54769f` underline for Safari before 16.2, since a plain fallback declaration is overridden by the later `color-mix()` declaration that holds `var()`.
