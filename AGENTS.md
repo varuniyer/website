@@ -10,13 +10,13 @@
 - Remove tracked files with `git rm`, not plain `rm`.
 - When one "commit" instruction covers several changes from the conversation, write one combined commit instead of per-subsystem splits.
 
-## CI
+## Build
 
-- Don't suggest docker buildx, `--cache-from`, or other layer caching for CI. README.md says why.
+- Don't suggest docker buildx, `--cache-from`, or other layer caching. README.md says why.
 
 ## Publishing
 
-- The repo stays public, nothing may depend on an older `site.tar.gz`, and `layouts/404.html` keeps its name. README.md says why.
+- `layouts/404.html` keeps its name. README.md says why.
 
 ## Rulings
 
@@ -31,7 +31,6 @@ The author settled these on 2026-11-10 while applying an audit. Treat each as de
 - `.nav-link`, `.mobile-nav-toggle`, and `.contact-link` share one hover background, one border radius, and one 0.15s fade, and `.bio a` shares that fade duration. `--color-hover-bg` stays a named palette token with one reference.
 - The CV compiles in one lualatex pass with `bookmark`.
 - `static/robots.txt` stays as an explicit allow-all policy.
-- The published artifact is `site.tar.gz` on the `site-tarball` release, written in code quotes in prose, comments, and the name of the step that publishes it, where Actions shows the backticks literally.
 - `.containerignore` lists only `.git` and `built`.
 - Publication records store `year` alone, because no reader uses the month.
 - The CV names the satellite system Elasticsearch throughout.
