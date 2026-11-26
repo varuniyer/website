@@ -3,7 +3,7 @@
 {{- if not (index hugo.Data .section) }}{{ errorf "data/%s.yaml holds no rows" .section }}{{ end -}}
 \begin{unlabeledlist}
 {{- range $i, $_ := index hugo.Data $.section }}
-{{- partial "require-keys.html" (dict "mapping" . "keys" $.keys "source" (printf "data/%s.yaml[%d]" $.section $i)) }}
+{{- partial "require-keys.html" (dict "mapping" . "keys" $.keys "path" (printf "data/%s.yaml[%d]" $.section $i)) }}
 {{- if $i }}
 {{ end }}
 {{ partial $.row . | safeHTML }}
