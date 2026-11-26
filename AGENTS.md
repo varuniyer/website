@@ -31,7 +31,7 @@ The author settled these on 2026-11-10 while applying an audit. Treat each as de
 - `.nav-link`, `.mobile-nav-toggle`, and `.contact-link` share one hover background, one border radius, and one 0.15s fade, and `.bio a` shares that fade duration. `--color-hover-bg` stays a named palette token with one reference.
 - The CV compiles in one lualatex pass with `bookmark`.
 - `static/robots.txt` stays as an explicit allow-all policy.
-- `.containerignore` lists only `.git` and `built`.
+- `.containerignore` lists only `.git` and `site`.
 - Publication records store `year` alone, because no reader uses the month.
 - The CV names the satellite system Elasticsearch throughout.
 - The profile photo scrolls with the page.
