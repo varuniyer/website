@@ -1,3 +1,3 @@
 {{- /* Escapes a URL for \href inside a macro argument. TeX needs only % and # escaped there.
-     contact.html rejects the URL characters TeX cannot pass through, and hyperref writes the rest into the PDF link unchanged. */ -}}
+     contact.html rejects the URL characters TeX cannot take in an \href argument, and hyperref writes the rest into the PDF link unchanged. */ -}}
 {{- return replaceRE `([%#])` `\$1` . }}
