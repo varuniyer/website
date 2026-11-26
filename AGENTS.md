@@ -22,12 +22,12 @@
 
 The author settled these on 2026-11-10 while applying an audit. Treat each as decided, and raise one again only when the code it describes changes.
 
-- README.md owns the publishing facts and their reasons and states no prohibition. AGENTS.md keeps only the prohibitions.
+- README.md states the publishing facts and their reasons and states no prohibition. AGENTS.md keeps only the prohibitions.
 - `params.author` in `hugo.toml` holds the author's name, and every template reads it there. The site has no `title` key, and the `rss` kind stays disabled though no page emits RSS today. `baseURL`, `sitemap.xml`, and the Containerfile's `*.xml` term stay, because search engines read the sitemap.
 - `data/contact.yaml`, `data/education.yaml`, and `data/experience.yaml` are the one source for the contact links, education, and experience that the site and the CV both state. The bio, the CV items, and the phone number stay hand-written, and only the CV shows the phone.
 - Every `data/publications.yaml` row states `selected` explicitly, since the homepage shows the selected subset.
-- Both author lists follow the Chicago join (`A and B`, `A, B, and C`), and the equal-contribution asterisk sits outside the author's bolded name.
-- Each equal-contribution legend appears only when a listed author carries the asterisk, and both read "equal contribution" with no "denotes". The range error calls an `equal_contributors` entry an author position.
+- Both author lists follow the Chicago join (`A and B`, `A, B, and C`), and the equal-contribution asterisk is placed outside the author's bolded name.
+- Each equal-contribution legend appears only when a listed author has the asterisk, and both read "equal contribution" with no "denotes". The range error calls an `equal_contributors` entry an author position.
 - `.nav-link`, `.mobile-nav-toggle`, and `.contact-link` share one hover background, one border radius, and one 0.15s background transition, and `.bio a` shares that transition's duration. `--color-hover-background` stays a named custom property with one reference.
 - The CV compiles in one lualatex pass with `bookmark`.
 - `static/robots.txt` stays as an explicit allow-all policy.
@@ -42,7 +42,7 @@ The author settled these on 2026-11-10 while applying an audit. Treat each as de
 - The BLooP item claims ROUGE and BARTScore gains on CNN/DM, CCSum, Multi-News, and SciTLDR scientific abstracts, because the paper reports ROUGE gains on SciTLDR only for abstract input.
 - The AMRPG item claims the best BLEU among the tested unsupervised syntactically controlled paraphrase generators, because the paper's Table 1 compares AMRPG against three such models.
 - The per-author flag marking the site's author is `is_site_author`, and prose calls that person the author.
-- `equal_contributors` lists 0-based author positions, and `data/publications.yaml` carries no comment saying so.
+- `equal_contributors` lists 0-based author positions, and `data/publications.yaml` has no comment saying so.
 - The line under the homepage's name is the degree line (`.about-degree`), since `role` names an experience title. It and the bio both say "the University of Illinois Chicago".
 - The contact partial is `contact.html`, named for `data/contact.yaml`.
 - The CV writes each education and experience entry with `\subheading` inside an `unlabeledlist` environment defined by `\newenvironment`, named for its unlabeled items since Technical Skills also uses it, because enumitem's `\newlist` gives the list its own depth and drops the nested bullets' `\labelitemii` and `\setlist[itemize,2]` styling.
@@ -53,6 +53,6 @@ The author settled these on 2026-11-10 while applying an audit. Treat each as de
 - The bio names institutions and degrees as `data/education.yaml` does.
 - `layouts/index.html` calls education row 0 `$latestEducation`, and `publication-records.html` calls the MODS name elements `$modsNames`.
 - `cv-section.tex` renders what the education and experience fragments share: the check that the data file has rows, each row's key check, and the `unlabeledlist` environment around the rows. Hugo parses it as HTML, so it passes each row through `safeHTML`, and it keeps the `.tex` extension.
-- `.about-info`'s `-10px` offset applies only from 768px, where the name sits beside the photo.
+- `.about-info`'s `-10px` offset applies only from 768px, where the name is beside the photo.
 - `.bio` has no layout rule for a second paragraph.
-- An `@supports not` block gives `.bio a` a precomputed `#54769f` underline for Safari before 16.2, since a plain fallback line loses to the later `color-mix()` declaration that holds `var()`.
+- An `@supports not` block gives `.bio a` a precomputed `#54769f` underline for Safari before 16.2, since a plain fallback line is overridden by the later `color-mix()` declaration that holds `var()`.
